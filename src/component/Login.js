@@ -11,7 +11,18 @@ import Typography from '@material-ui/core/Typography';
 import './Login.css'
 
 
+
 export class Login extends React.Component{
+
+    constructor(props) {
+        super(props);
+        localStorage.setItem("admin", "4dm1n");
+        this.state = {user: "", password: "",userExist:false, userPasswordMatch:false}
+        this.singInHandler = this.singInHandler.bind(this);
+    }
+
+
+
 
     render(){
         return (
@@ -27,7 +38,7 @@ export class Login extends React.Component{
                         <form className="form">
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
-                                <Input id="email" name="email" autoComplete="email" autoFocus />
+                                <Input id="email" name="email" autoComplete="email" value={this.state.user} onChange={this.singInHandler} autoFocus />
                             </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
@@ -36,6 +47,8 @@ export class Login extends React.Component{
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    value={this.state.password}
+                                    onChange={this.singInHandler}
                                 />
                             </FormControl>
                             <Button
@@ -53,5 +66,16 @@ export class Login extends React.Component{
             </React.Fragment>
         );
     }
+
+    singInHandler(e) {
+        console.log("holaaa")
+        console.log(this.state);
+        if(e.target.id === "email"){
+            this.setState({user:e.target.value});
+        }else if (e.target.id === "password") {
+            this.setState({password: e.target.value});
+        }
+    }
+
 
 }

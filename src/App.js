@@ -1,38 +1,70 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { TodoList } from './TodoList';
+import {TodoList} from './TodoList';
 
-class
-App extends Component {
-
-  constructor(props){
-    super(props);
-    const todosExample = [{text:"Learn React", priority:5, dueDate: new Date() },
-          {text:"Learn about APIs", priority:4, dueDate: new Date(2018,8,30) },
-          {text:"write TODO App", priority:3, dueDate: new Date(2018,9,30) }];
-  }
-
-  
-  render() {
-      const todosExample = [{text:"Learn React", priority:5, dueDate: new Date() },
-          {text:"Learn about APIs", priority:4, dueDate: new Date(2018,8,30) },
-          {text:"write TODO App", priority:3, dueDate: new Date(2018,9,30) }];
-          
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h1>TODO React App</h1>
-            <TodoList todos={todosExample} />
-          <img src={logo} className="App-logo" alt="logo" />
+import {Login} from './component/Login.js';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import TodoApp from "./TodoApp";
+import moment from "moment";
+import Button from "@material-ui/core/Button";
+import {LocalGasStationOutlined} from "@material-ui/icons";
 
 
+class App extends React.Component {
 
 
-        </div>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {isLoggedIn: true};
+        localStorage.setItem('admin', "4dm1n");
+
+    }
+
+
+    render() {
+        const LoginView = () => (
+            <Login/>
+        );
+
+        const TodoView = () => (
+            <div>
+                <TodoApp/>
+            </div>
+        );
+
+        function f(e) {
+            if(e.isLoggedIn){
+                return TodoView;
+            }else{
+                return LoginView;
+            }
+
+        }
+
+        return (
+            <Router>
+                <div className="App">
+
+
+                    <br/>
+                    <br/>
+
+                    <ul>
+                        <li><Link to="/">Login</Link></li>
+                        <li><Link to="/todo">Todo</Link></li>
+                    </ul>
+
+                    <div>
+                        <Route exact path="/" component={LoginView}/>
+                        <Route path="/todo" component={f(this.state)}/>
+                    </div>
+                </div>
+            </Router>
+        );
+
+    }
+
 }
 
 export default App;
