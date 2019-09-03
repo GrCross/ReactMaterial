@@ -15,6 +15,7 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
 
 import './component/Login.css'
 class TodoApp extends React.Component {
@@ -31,44 +32,45 @@ class TodoApp extends React.Component {
                 <CssBaseline />
                 <main className="layout">
 
-
-                    <Paper className="paper">
-                        <Typography variant="headline">Todo</Typography>
-                        <form onSubmit={this.handleSubmit}>
-                            <FormControl margin="normal" fullWidth>
-                                <label htmlFor="new-todo-Text">
-                                    Text:
-                                </label>
-                                <TextField
-                                    id="new-todo-text"
-                                    onChange={this.handleChange}
-                                    value={this.state.text}/>
-                            </FormControl>
-                            <FormControl margin="normal" fullWidth>
-                                <label htmlFor="new-todo-Priority">
-                                    Priority:
-                                </label>
-                                <TextField
-                                    id="new-todo-priority"
-                                    onChange={this.handleChange}
-                                    value={this.state.priority}
-                                    type="number"/>
-                            </FormControl>
-                            <FormControl margin="normal" fullWidth>
-                                <label htmlFor="new-todo-dueDate2">
-                                    dueDate:
-                                </label>
-                                <TextField
-                                    id="new-todo-dueDate"
-                                    onChange={this.handleChange}
-                                    value={this.state.dueDate}
-                                    type="date"/>
-                            </FormControl>
-                            <Button>
-                                Add #{this.state.items.length + 1}
-                            </Button>
-                        </form>
-                    </Paper>
+                    <Card>
+                        <Paper className="paper">
+                            <Typography variant="headline">Todo</Typography>
+                            <form onSubmit={this.handleSubmit}>
+                                <FormControl margin="normal" fullWidth>
+                                    <label htmlFor="new-todo-Text">
+                                        Text:
+                                    </label>
+                                    <TextField
+                                        id="new-todo-text"
+                                        onChange={this.handleChange}
+                                        value={this.state.text}/>
+                                </FormControl>
+                                <FormControl margin="normal" fullWidth>
+                                    <label htmlFor="new-todo-Priority">
+                                        Priority:
+                                    </label>
+                                    <TextField
+                                        id="new-todo-priority"
+                                        onChange={this.handleChange}
+                                        value={this.state.priority}
+                                        type="number"/>
+                                </FormControl>
+                                <FormControl margin="normal" fullWidth>
+                                    <label htmlFor="new-todo-dueDate2">
+                                        dueDate:
+                                    </label>
+                                    <TextField
+                                        id="new-todo-dueDate"
+                                        onChange={this.handleChange}
+                                        value={this.state.dueDate}
+                                        type="date"/>
+                                </FormControl>
+                                <Button>
+                                    Add #{this.state.items.length + 1}
+                                </Button>
+                            </form>
+                        </Paper>
+                    </Card>
                     <TodoList items= {this.state.items}/>
                 </main>
             </React.Fragment>
