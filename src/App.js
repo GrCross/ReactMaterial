@@ -16,7 +16,7 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {isLoggedIn: true};
+        this.state = {isLoggedIn: false};
         localStorage.setItem('admin', "4dm1n");
 
     }
@@ -34,9 +34,15 @@ class App extends React.Component {
         );
 
         function f(e) {
-            if(e.isLoggedIn){
+            console.log(e);
+
+            console.log(typeof temp);
+            if(e==="true"){
+            //if(localStorage.getItem("isLoggedIn")){
                 return TodoView;
             }else{
+                console.log(localStorage.getItem("isLoggedIn"));
+                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa");
                 return LoginView;
             }
 
@@ -45,8 +51,6 @@ class App extends React.Component {
         return (
             <Router>
                 <div className="App">
-
-
                     <br/>
                     <br/>
 
@@ -57,7 +61,7 @@ class App extends React.Component {
 
                     <div>
                         <Route exact path="/" component={LoginView}/>
-                        <Route path="/todo" component={f(this.state)}/>
+                        <Route path="/todo" component={f(localStorage.getItem("isLoggedIn"))} />
                     </div>
                 </div>
             </Router>
